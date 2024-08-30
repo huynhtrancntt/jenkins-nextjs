@@ -15,24 +15,30 @@ pipeline {
 
             // }
 
-            // stage('docker-build')
-            // {
-            //     environment {
-            //         DOCKER_TAG="${GIT_BRANCH.tokenize('/').pop()}-${GIT_COMMIT.substring(0,7)}"
-            //     }
-            //     steps {
+            stage('docker-build')
+            {
+                environment {
+                    DOCKER_IMAGE="huynhtrancntt/nextjs"
 
-            //         echo "${DOCKER_IMAGE}:${DOCKER_TAG}";
-            //         sh 'docker --version'
-            //         sh 'docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} .'
+                    DOCKER_TAG="${GIT_BRANCH.tokenize('/').pop()}-${GIT_COMMIT.substring(0,7)}"
+                }
+                steps {
 
-            //         withDockerRegistry(credentialsId: 'docker-hub', url: 'https://index.docker.io/v1/') {
-            //                         // some block
-            //             sh "docker push ${DOCKER_IMAGE}:${DOCKER_TAG}"
-            //             // sh "docker push ${DOCKER_IMAGE}:latest"
+                    echo "${DOCKER_IMAGE}:${DOCKER_TAG}";
+                    sh 'docker --version'
+                    sh 'docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} .'
+
+                    sh "docker image ls | grep ${DOCKER_IMAGE}"
+
+                    // withDockerRegistry(credentialsId: 'docker-hub', url: 'https://index.docker.io/v1/') {
+                    //                 // some block
+                    //     sh "docker push ${DOCKER_IMAGE}:${DOCKER_TAG}"
+                    //     // sh "docker push ${DOCKER_IMAGE}:latest"
                                     
 
-            //         }
+                    // }
+                }
+            }
                     
 
             //         sh "docker image rm ${DOCKER_IMAGE}:${DOCKER_TAG}"
