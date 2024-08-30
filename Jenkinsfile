@@ -66,18 +66,18 @@ pipeline {
                 }
             }
         }
-        stage('install') {
-            steps {
-                echo "install"
-                sh 'npm install'
-            }
-        }
-        stage('build') {
-            steps {
-                echo "build"
-                sh 'npm run build'
-            }
-        }
+        // stage('install') {
+        //     steps {
+        //         echo "install"
+        //         sh 'npm install'
+        //     }
+        // }
+        // stage('build') {
+        //     steps {
+        //         echo "build"
+        //         sh 'npm run build'
+        //     }
+        // }
 
         
     }
