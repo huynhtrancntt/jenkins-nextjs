@@ -1,6 +1,6 @@
 # Stage 1: Build stage
 # Sử dụng Node.js chính thức với phiên bản Alpine để tối ưu dung lượng image
-FROM node:18-alpine AS builder
+FROM node:20.12.2-alpine AS builder
 
 # Thiết lập thư mục làm việc trong container
 WORKDIR /app
@@ -23,7 +23,7 @@ RUN npm run build
 
 # Stage 2: Production stage
 # Sử dụng một image Node.js chính thức nhưng nhẹ hơn để chạy ứng dụng
-FROM node:18-alpine
+FROM node:20.12.2-alpine
 
 # Thiết lập thư mục làm việc trong container
 WORKDIR /app
