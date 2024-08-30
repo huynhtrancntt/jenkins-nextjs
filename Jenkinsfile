@@ -2,23 +2,30 @@ pipeline {
     agent any
     
     tools {
-        nodejs "nodejs"
+        nodejs "20.12.2"
     }
 
     stages {
-       
-        stage("install") {
+       stage('version') {
             steps {
-                echo "install"
-                sh 'npm install'
+                script {
+                    // In ra phiên bản npm
+                    sh 'npm version'
+                }
             }
         }
-        stage("build") {
-            steps {
-                echo "build"
-                sh 'npm run build'
-            }
-        }
+        // stage("install") {
+        //     steps {
+        //         echo "install"
+        //         sh 'npm install'
+        //     }
+        // }
+        // stage("build") {
+        //     steps {
+        //         echo "build"
+        //         sh 'npm run build'
+        //     }
+        // }
     } 
     
     post {
