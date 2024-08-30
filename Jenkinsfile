@@ -21,9 +21,10 @@ pipeline {
                     DOCKER_IMAGE="huynhtrancntt/nextjs"
 
                     DOCKER_TAG="${GIT_BRANCH.tokenize('/').pop()}-${GIT_COMMIT.substring(0,7)}"
-                    
+
                     NEXT_PUBLIC_API_HOST = 'http://localhost:3001/api'
                 }
+
                 steps {
 
                     echo "${DOCKER_IMAGE}:${DOCKER_TAG}";
@@ -33,6 +34,7 @@ pipeline {
                     sh "docker build --build-arg NEXT_PUBLIC_API_HOST=${NEXT_PUBLIC_API_HOST} -t ${DOCKER_IMAGE}:${DOCKER_TAG} ."
                     
                     echo "docker build done";
+
                     //sh "docker image ls | grep ${DOCKER_IMAGE}"
 
                     // withDockerRegistry(credentialsId: 'docker-hub', url: 'https://index.docker.io/v1/') {
@@ -43,6 +45,7 @@ pipeline {
 
                     // }
                 }
+            }
                     
 
             //         sh "docker image rm ${DOCKER_IMAGE}:${DOCKER_TAG}"
